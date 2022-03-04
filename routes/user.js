@@ -1,9 +1,10 @@
 const User = require('../models/User');
+const { verifyTokenAndAdmin } = require('./verifyToken');
 
 const router = require('express').Router()
 
 // GET ALL USERS
-router.get("/", async (req, res) => {
+router.get("/", verifyTokenAndAdmin, async (req, res) => {
     try {
         const users = await User.find({})
         res.status(200).json(users)
@@ -13,7 +14,7 @@ router.get("/", async (req, res) => {
 })
 
 // GET USER
-router.get("/:id", async (req, res) => {
+router.get("/:id", verifyTokenAndAdmin, async (req, res) => {
     try {
         const user = await User.findById(req.params.id)
         res.status(200).json(user)
