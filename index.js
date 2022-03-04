@@ -7,6 +7,7 @@ const cors = require("cors");
 const authRoutes = require("./routes/auth");
 const productRoute = require("./routes/product");
 const userRoutes = require("./routes/user");
+const cartRoutes = require("./routes/cart");
 
 const port = process.env.PORT || 5001;
 const app = express();
@@ -18,6 +19,7 @@ app.use(morgan("tiny"));
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoute);
 app.use("/api/users", userRoutes);
+app.use("/api/cart", cartRoutes);
 
 const start = () => {
   try {
