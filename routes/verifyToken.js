@@ -13,3 +13,11 @@ const verifyToken = (req, res, next) => {
     return res.status(401).json("You are not authenticated!");
   }
 };
+
+const verifyTokenAndAuthorization = (req, res, next) => {
+    if(req.user.id === req.params.id || req.user.isAdmin) {
+        next()
+    }else {
+        res.status(403).json("You are not alowed to do that!");
+      }
+}
